@@ -11,7 +11,7 @@ function getSearchMethod(searchTerm) {
 }
 
 async function backgroundImage() { //function to set background according to the city entered
-    let response = await fetch('https://api.unsplash.com/search/photos?query=$'+searchInput.value+'&client_id=8b3303518e733b03bb9fbe890041915da381de31ef0602ad71dc8adfd4b79f83');
+    let response = await fetch('https://api.unsplash.com/search/photos?query=$'+ searchInput.value+'&client_id=8b3303518e733b03bb9fbe890041915da381de31ef0602ad71dc8adfd4b79f83');
     let data = await response.json();
     let countryImage = data['results'][1]['urls']['regular'];
     document.body.style.backgroundImage = `url(${countryImage})`;
@@ -97,6 +97,24 @@ function searchWeather(searchTerm) {
         weatherIconFour.src = 'http://openweathermap.org/img/w/' + data.list[24].weather[0].icon + '.png';
         weatherIconFive.src = 'http://openweathermap.org/img/w/' + data.list[30].weather[0].icon + '.png';
 
+        // to get current date and upcoming days
+        var currentDate = new Date();
+        var weekday = new Array(7);
+        weekday[0] = "Sunday";
+        weekday[1] = "Monday";
+        weekday[2] = "Tuesday";
+        weekday[3] = "Wednesday";
+        weekday[4] = "Thursday";
+        weekday[5] = "Friday";
+        weekday[6] = "Saturday";
+
+        var n = weekday[currentDate.getDay()];
+
+        document.getElementById("day1").innerHTML = weekday[currentDate.getDay()];
+        document.getElementById("day2").innerHTML = weekday[currentDate.getDay()+1];
+        document.getElementById("day3").innerHTML = weekday[currentDate.getDay()+2];
+        document.getElementById("day4").innerHTML = weekday[currentDate.getDay()+3];
+        document.getElementById("day5").innerHTML = weekday[currentDate.getDay()+4];
     })
 }
 
@@ -105,53 +123,6 @@ function setVisibilityforWeather() { // to make it visible after entering city
     weatherContainer.style.visibility = 'visible';
 }
 
-
-/* function init(resultFromServer) {
-    switch (resultFromServer.weather[0].main) { // background images for weather conditions
-        case 'Clear':
-            document.body.style.backgroundImage = 'url("images/water-blue-ocean.jpg")';
-            break;
-
-        case 'Clouds':
-            document.body.style.backgroundImage = 'url("images/pexels-photo-289649.jpeg")';
-            break;
-
-        case 'Rain':
-        case 'Drizzle':
-        case 'Mist':
-            document.body.style.backgroundImage = 'url("images/pexels-photo-281260.jpeg")';
-            break;
-
-        case 'Thunderstorm':
-            document.body.style.backgroundImage = 'url("images/lightning-storm-weather-sky-53459.jpeg")';
-            break;
-
-        case 'Snow':
-            document.body.style.backgroundImage = 'url("images/clouds-cloudporn-weather-lookup-158163.jpeg")';
-            break;
-
-        default:
-            break;
-    }
-
-let weatherDescriptionHeader = document.getElementById('weatherDescriptionHeader');
-let temperatureElement = document.getElementById('temperature');
-let humidityElement = document.getElementById('humidity');
-let windSpeedElement = document.getElementById('windSpeed');
-let cityHeader = document.getElementById('cityHeader');
-let weatherIcon = document.getElementById('documentIconImg');
-
-weatherIcon.src = 'http://openweathermap.org/img/w/' + resultFromServer.weather[0].icon + '.png'; // get icon URL
-
-let resultDescription = resultFromServer.weather[0].description; // to give a description about the weather condition
-weatherDescriptionHeader.innerText = resultDescription.charAt(0).toUpperCase() + resultDescription.slice(1); // for the uppercase
-
-temperatureElement.innerHTML = Math.floor(resultFromServer.main.temp) + '&#176'; // to display temperature
-windSpeedElement.innerHTML = 'Winds at ' + Math.floor(resultFromServer.wind.speed) + ' m/s'; // to display wind
-cityHeader.innerHTML = resultFromServer.name; // to display city name
-humidityElement.innerHTML = 'Humidity levels at ' + resultFromServer.main.humidity + '%'; // to display humidity
-}
-*/
 document.getElementById('searchBtn').addEventListener('click', () => { // function added for the search button
     let searchTerm = document.getElementById('searchInput').value;
     if(searchTerm)
