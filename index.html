@@ -5,71 +5,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css"/>
-    <title>Title</title>
+    <title>Weather App</title>
 </head>
 <body>
     <section>
-    <div id="searchContainer">
-        <input class="searchControl" type="text" placeholder="City name or zipcode" id="searchInput">
-        <button class="searchControl" id="searchBtn">Search</button>
-    </div>
+        <h2 class="neon" data-text="Current weather and forecasts in your city">Current weather and forecasts in your city</h2>
+    </section>
+    <section>
+        <div id="searchContainer">
+            <input class="searchControl" type="text" placeholder="Please enter your city name or zipcode" id="searchInput">
+            <button class="searchControl" id="searchBtn">Search</button>
+        </div>
+    </section>
+    <section>
+        <h1 id="cityHeader"></h1>
     </section>
     <div id="weatherContainer" class="container">
-        <div class="card-deck">
-        <div id="dayOne" class="card-title pr-5">
+        <div class="row">
+        <div id="dayOne" class="col-sm-3">
             <h1>Day One</h1>
+            <div id="temperatureOne"></div>
         <div id="weatherDescriptionOne" class="card-text"></div>
             <h6 id="cityHeaderOne"></h6>
             <div id="weatherMainOne">
-                <div id="temperatureOne"></div>
                 <div id="weatherDescriptionHeaderOne"></div>
                 <div><img id="documentIconImgOne"></div>
             </div>
-
         </div>
-        <div id="dayTwo" class="card-title pr-5">
-            <h1>Day TWo</h1>
+        </div>
+        <div class="row">
+        <div id="dayTwo" class="col-sm-2 mr-3">
+            <h1>Day Two</h1>
+            <div id="temperatureTwo"></div>
             <div id="weatherDescriptionTwo" class="card-text"></div>
-                <h6 id="cityHeaderTwo"></h6>
                 <div id="weatherMainTwo">
-                    <div id="temperatureTwo"></div>
                     <div id="weatherDescriptionHeaderTwo"></div>
                     <div><img id="documentIconImgTwo"></div>
                 </div>
         </div>
-        <div id="dayThree" class="card-title pr-5">
+        <div id="dayThree" class="col-sm-2 mr-3">
             <h1>Day Three</h1>
+            <div id="temperatureThree"></div>
             <div id="weatherDescriptionThree" class="card-text"></div>
                 <h6 id="cityHeaderThree"></h6>
                 <div id="weatherMainThree">
-                    <div id="temperatureThree"></div>
                     <div id="weatherDescriptionHeaderThree"></div>
                     <div><img id="documentIconImgThree"></div>
                 </div>
         </div>
-        <div id="dayFour" class="card-title pr-5">
+        <div id="dayFour" class="col-sm-2 mr-3">
             <h1>Day Four</h1>
+            <div id="temperatureFour"></div>
             <div id="weatherDescriptionFour" class="card-text"></div>
-                <h6 id="cityHeaderFour"></h6>
                 <div id="weatherMainFour">
-                    <div id="temperatureFour"></div>
                     <div id="weatherDescriptionHeaderFour"></div>
                     <div><img id="documentIconImgFour"></div>
                 </div>
         </div>
-        <div id="dayFive" class="card-title pr-5">
+        <div id="dayFive" class="col-sm-2 mr-3">
             <h1>Day Five</h1>
+            <div id="temperatureFive"></div>
             <div id="weatherDescriptionFive" class="card-text"></div>
-                <h6 id="cityHeaderFive"></h6>
                 <div id="weatherMainFive">
-                    <div id="temperatureFive"></div>
                     <div id="weatherDescriptionHeaderFive"></div>
                     <div><img id="documentIconImgFive"></div>
                 </div>
         </div>
-
     </div>
     </div>
 
