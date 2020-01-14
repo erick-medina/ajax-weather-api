@@ -1,8 +1,10 @@
 body {
     margin: 0;
     padding: 0;
+    margin-bottom: 30px;
+    background-repeat: no-repeat;
+    background-size: cover;
     background-image: url("images/backImage.jpg");
-
 }
 
 .neon {
@@ -12,7 +14,7 @@ body {
     transform: translate(-50%, -50%);
     font-size: 40px;
     color: #ffff;
-    top: 10%;
+    top: 20%;
     left: 50%;
     margin: 0;
     padding: 0 20px;
@@ -43,7 +45,7 @@ body {
 
 #searchInput {
     align-items: center;
-    margin-top: 150px;
+    margin-top: 250px;
 }
 #cityHeader {
     padding-top: 50px;
@@ -51,11 +53,12 @@ body {
     font-size: 42px;
     font-family: "Montserrat", sans-serif;
     padding-bottom: 30px;
+    color: white;
 }
 
 #dayOne, #dayTwo, #dayThree, #dayFour, #dayFive {
     text-align: center;
-    background-color: rgba(0,0,0,0.25);
+    background-color: rgba(0,0,0,0.5);
     box-shadow: 1px 1px 5px black;
     padding: 50px;
     border-radius: 10px;
@@ -91,6 +94,10 @@ body {
 
 #weatherDescriptionOne {
     font-size: 20px;
+}
+
+#dayOne {
+    align-items: center;
 }
 
 
