@@ -2,8 +2,6 @@
 
 Link to the weather app: https://erick-medina.github.io/ajax-weather-api/
 
-# The weather application
-
 ## Practical Information
 
 * Repository: `ajax-weather-api`
