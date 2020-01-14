@@ -10,6 +10,13 @@ function getSearchMethod(searchTerm) {
         searchMethod = 'q';
 }
 
+async function backgroundImage() { //function to set background according to the city entered
+    let response = await fetch('https://api.unsplash.com/search/photos?query=$'+searchInput.value+'&client_id=8b3303518e733b03bb9fbe890041915da381de31ef0602ad71dc8adfd4b79f83');
+    let data = await response.json();
+    let countryImage = data['results'][1]['urls']['regular'];
+    document.body.style.backgroundImage = `url(${countryImage})`;
+}
+
 function searchWeather(searchTerm) {
     getSearchMethod(searchTerm); // to call the method
     fetch(`https://api.openweathermap.org/data/2.5/forecast?${searchMethod}=${searchTerm}&APPID=${apiKey}&units=${units}`).then(result => { // calling url. 'Result' to get the information from the server.
@@ -32,7 +39,7 @@ function searchWeather(searchTerm) {
         let dayFour = tempArray.slice(24,32);
         let dayFive = tempArray.slice(32,40);
 
-        let averageForDays = arr => Math.floor((arr.reduce((a, b) => a + b, 0)  / arr.length )) + '&#176'; // to calculate average for day
+        let averageForDays = arr => Math.floor((arr.reduce((a, b) => a + b, 0)  / arr.length )) + '&#176' + 'C'; // to calculate average for day
 
         // getting id 'temperature'
         let temperatureElementOne = document.getElementById('temperatureOne');
@@ -41,8 +48,11 @@ function searchWeather(searchTerm) {
         let temperatureElementFour = document.getElementById('temperatureFour');
         let temperatureElementFive = document.getElementById('temperatureFive');
 
-        // getting id 'city'
-        let cityHeaderOne = document.getElementById('cityHeaderOne');
+
+        let cityHeader = document.getElementById('cityHeader');  // getting id 'city'
+        cityHeader.innerHTML = data.city.name;
+
+        let searchInput = document.getElementById('searchInput') // getting id 'searchinput' for background image
 
         // getting id 'description weather'
         let weatherDescriptionHeaderOne = document.getElementById('weatherDescriptionOne');
@@ -51,14 +61,28 @@ function searchWeather(searchTerm) {
         let weatherDescriptionHeaderFour = document.getElementById('weatherDescriptionFour');
         let weatherDescriptionHeaderFive = document.getElementById('weatherDescriptionFive');
 
-        cityHeaderOne.innerHTML = data.city.name;
+        // getting icon images
+        let weatherIconOne = document.getElementById('documentIconImgOne');
+        let weatherIconTwo = document.getElementById('documentIconImgTwo');
+        let weatherIconThree = document.getElementById('documentIconImgThree');
+        let weatherIconFour = document.getElementById('documentIconImgFour');
+        let weatherIconFive = document.getElementById('documentIconImgFive');
 
         // calculating description weather
         let descripWeatherOne = data.list[0].weather[0].description;
         weatherDescriptionHeaderOne.innerHTML = descripWeatherOne.charAt(0).toUpperCase() + descripWeatherOne.slice(1);
 
+        let descripWeatherTwo = data.list[8].weather[0].description;
+        weatherDescriptionHeaderTwo.innerHTML = descripWeatherTwo.charAt(0).toUpperCase() + descripWeatherTwo.slice(1);
 
+        let descripWeatherThree = data.list[16].weather[0].description;
+        weatherDescriptionHeaderThree.innerHTML = descripWeatherThree.charAt(0).toUpperCase() + descripWeatherThree.slice(1);
 
+        let descripWeatherFour = data.list[24].weather[0].description;
+        weatherDescriptionHeaderFour.innerHTML = descripWeatherFour.charAt(0).toUpperCase() + descripWeatherFour.slice(1);
+
+        let descripWeatherFive = data.list[30].weather[0].description;
+        weatherDescriptionHeaderFive.innerHTML = descripWeatherFive.charAt(0).toUpperCase() + descripWeatherFive.slice(1);
 
         temperatureElementOne.innerHTML = averageForDays(dayOne); // to display temperature day one
         temperatureElementTwo.innerHTML = averageForDays(dayTwo);
@@ -66,10 +90,20 @@ function searchWeather(searchTerm) {
         temperatureElementFour.innerHTML = averageForDays(dayFour);
         temperatureElementFive.innerHTML = averageForDays(dayFive);
 
+        // get icon URL
+        weatherIconOne.src = 'http://openweathermap.org/img/w/' + data.list[0].weather[0].icon + '.png';
+        weatherIconTwo.src = 'http://openweathermap.org/img/w/' + data.list[8].weather[0].icon + '.png';
+        weatherIconThree.src = 'http://openweathermap.org/img/w/' + data.list[16].weather[0].icon + '.png';
+        weatherIconFour.src = 'http://openweathermap.org/img/w/' + data.list[24].weather[0].icon + '.png';
+        weatherIconFive.src = 'http://openweathermap.org/img/w/' + data.list[30].weather[0].icon + '.png';
 
     })
 }
 
+function setVisibilityforWeather() { // to make it visible after entering city
+    let weatherContainer = document.getElementById('weatherContainer');
+    weatherContainer.style.visibility = 'visible';
+}
 
 
 /* function init(resultFromServer) {
@@ -122,6 +156,8 @@ document.getElementById('searchBtn').addEventListener('click', () => { // functi
     let searchTerm = document.getElementById('searchInput').value;
     if(searchTerm)
         searchWeather(searchTerm);
+    backgroundImage();
+    setVisibilityforWeather();
 });
 
 
